@@ -34,7 +34,7 @@
                     <input type="text" name="imagen2" value="en prueva no toques">
                     </br>
                     <input type="hidden" name="ID_cliente" value="<jsp:getProperty name="clienteBean1" property ="id_cliente" />">
-                    <input type="hidden" name="accion" value="registrar">
+                    <input type="hidden" name="accion" value="cotizar">
                 
                     <input type="submit" value="cotizar">
                 </form>

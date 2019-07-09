@@ -6,8 +6,6 @@
 package Utils;
 
 import Bean.CorreoDTO;
-import Bean.CorreoDTO;
-import Bean.CorreoDTO;
 import java.io.File;
 import java.util.Properties;
 import javax.activation.DataHandler;
@@ -33,9 +31,15 @@ public class Mensajero {
             p.setProperty("mail.smtp.user", c.getUsuarioCorreo());
             p.setProperty("mail.smtp.auth", "true");
             
+            String mensajeCompleto = "<div style=\"border: 2px outset #E8A209;\n" +
+                                        "  border-radius: 5px;\">\n" +
+                                        "<h1>"+c.getTitulo()+"</h1> \n " +
+                                        "<p>"+c.getMensaje()+"</p></div>";
+            
+            
             Session s= Session.getDefaultInstance(p,null);
-            BodyPart texto = new MimeBodyPart();
-            texto.setText(c.getMensaje());
+            MimeBodyPart texto = new MimeBodyPart();
+            texto.setText(mensajeCompleto, "UTF-8", "html");
             BodyPart adjunto = new MimeBodyPart();
             
             System.out.println(c.getRutaArchivo());

@@ -23,11 +23,11 @@
                             <br>
                             <a class="effect-1" href="cliente_form_registrar.jsp" >Registrar</a>
                             <br>
-                            <a class="effect-1" href="ServletCliente?accion=listar" >Listar</a>
+                            <a class="effect-1" href="ServletAccCliente?accion=listarCotizaionPersonal" >Mis cotizaciones</a>
                             <br>
                             <a class="effect-1" href="cliente_form_cotizacion.jsp" >Cotizar</a>
                             <br>    
-                            <a class="effect-1" href="index.jsp"  >Salir</a>
+                            <a class="effect-1" href="ServletCliente?accion=logout" >Salir</a>
 
                     </div>
                 <div class="col-md-4 ">

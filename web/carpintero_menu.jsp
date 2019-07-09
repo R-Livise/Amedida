@@ -1,6 +1,6 @@
 <%-- 
-    Document   : cliente_menu
-    Created on : 29/06/2019, 12:17:31 AM
+    Document   : carpintero_menu
+    Created on : 08/07/2019, 04:56:37 PM
     Author     : Rafael Livise
 --%>
 
@@ -13,21 +13,23 @@
         <%@ include file="master_head_1.jsp" %> 
     </head>
     <body>
-        <%@ include file="cliente_verificacion_sesion.jsp" %> 
+        <%@ include file="carpintero_verificacion_sesion.jsp" %> 
         <div class="container" >
-            <h1>cliente menu</h1>
+            <h1>carpintero menu</h1>
             <div class="row " >
                     
                     <div class="col-md-2" >
                             <a class="effect-1" href="index.jsp"  >Inicio</a>
                             <br>
-                            <a class="effect-1" href="cliente_form_registrar.jsp" >Registrar</a>
+                            <a class="effect-1" href="carpintero_form_registrar.jsp" >Registrar</a>
                             <br>
-                            <a class="effect-1" href="ServletAccCliente?accion=listarCotizaionPersonal" >Mis cotizaciones</a>
+                            <a class="effect-1" href="ServletCarpintero?accion=listar" >Listar</a>
                             <br>
-                            <a class="effect-1" href="cliente_form_cotizacion.jsp" >Cotizar</a>
+                            <a class="effect-1" href="ServletAccCarpintero?accion=listarCotizacionesGeneral" >Listar Cotizaciones</a>
+                            <br>
+                            <a class="effect-1" href="carpintero_form_cotizacion.jsp" >Cotizar</a>
                             <br>    
-                            <a class="effect-1" href="ServletCliente?accion=logout" >Salir</a>
+                            <a class="effect-1" href="ServletCarpintero?accion=logout" >Salir</a>
 
                     </div>
                 <div class="col-md-4 ">

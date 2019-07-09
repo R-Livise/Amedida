@@ -203,7 +203,7 @@ public class MySqlCarpinteroDAO implements ICarpinteroDAO {
                         obj.setCorreo(rs.getString("correo"));
                         obj.setUsuario(rs.getString("usuario"));
                         obj.setContrasegna(rs.getString("password"));
-                        obj.setId_carpintero(rs.getInt("ID_cliente"));
+                        obj.setId_carpintero(rs.getInt("ID_carpintero"));
                         data.add(obj);
                 }
         } catch (Exception e) 
@@ -265,8 +265,50 @@ public class MySqlCarpinteroDAO implements ICarpinteroDAO {
 
     @Override
     public CarpinteroDTO iniciarSesion(String user, String password) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        CarpinteroDTO obj = null;
+        Connection cn = null;
+        ResultSet rs = null;
+        PreparedStatement pstm = null;
+        
+        try{
+            
+            String sql = "SELECT * FROM master_carpintero WHERE usuario = ? and password = ? ";
+            cn = MysqlDBConexion.getConexion();
+            
+            pstm=cn.prepareStatement(sql);
+            pstm.setString(1, user);
+            pstm.setString(2, password);
+            
+            System.out.println("Se envia : " + pstm.toString());
+            
+            rs=pstm.executeQuery();
+            if(rs.next()){
+                obj = new CarpinteroDTO();
+                obj.setNombres(rs.getString("nombres"));
+                obj.setApellidos(rs.getString("apellidos"));
+                obj.setCorreo(rs.getString("correo"));
+                obj.setUsuario(rs.getString("usuario"));
+                obj.setContrasegna(rs.getString("password"));
+                obj.setId_carpintero(rs.getInt("ID_carpintero"));
+                
+            }
+            
+        }catch(Exception e){
+            e.printStackTrace();
+            System.out.println("Error buscar carpintero:" + e);
+        }finally
+        {
+                try 
+                {   
+                        if(rs!= null) rs.close();
+                        if(pstm!= null) pstm.close();
+                        if(cn!= null) cn.close();
+                } catch (Exception e2) 
+                {
+                }
+        }
+        
+        return obj;
     }
-
     
 }

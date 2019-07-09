@@ -24,6 +24,7 @@ public class CorreoDTO {
     private String nombreArchivo;
     private String destino;
     private String asunto;
+    private String titulo;
     private String mensaje;
 
     public String getUsuarioCorreo() {
@@ -66,6 +67,14 @@ public class CorreoDTO {
         this.asunto = asunto;
     }
 
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+    
     public String getMensaje() {
         return mensaje;
     }

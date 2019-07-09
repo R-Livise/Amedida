@@ -9,21 +9,26 @@ package JavaBean;
  *
  * @author Rafael Livise
  */
-public class ClienteBean {
+public class CarpinteroBean {
     
-    private int id_cliente;
+    private int id_carpintero;
     private String nombres;
     private String apellidos;
+    private String ncelular;
+    private String referencias;
+    private int nnota;
+    private double estrellas;
     private String correo;
     private String usuario;
+    private int monedas;
     private String codigoVerificacion;
 
-    public int getId_cliente() {
-        return id_cliente;
+    public int getId_carpintero() {
+        return id_carpintero;
     }
 
-    public void setId_cliente(int id_cliente) {
-        this.id_cliente = id_cliente;
+    public void setId_carpintero(int id_carpintero) {
+        this.id_carpintero = id_carpintero;
     }
 
     public String getNombres() {
@@ -42,6 +47,38 @@ public class ClienteBean {
         this.apellidos = apellidos;
     }
 
+    public String getNcelular() {
+        return ncelular;
+    }
+
+    public void setNcelular(String ncelular) {
+        this.ncelular = ncelular;
+    }
+
+    public String getReferencias() {
+        return referencias;
+    }
+
+    public void setReferencias(String referencias) {
+        this.referencias = referencias;
+    }
+
+    public int getNnota() {
+        return nnota;
+    }
+
+    public void setNnota(int nnota) {
+        this.nnota = nnota;
+    }
+
+    public double getEstrellas() {
+        return estrellas;
+    }
+
+    public void setEstrellas(double estrellas) {
+        this.estrellas = estrellas;
+    }
+
     public String getCorreo() {
         return correo;
     }
@@ -58,6 +95,14 @@ public class ClienteBean {
         this.usuario = usuario;
     }
 
+    public int getMonedas() {
+        return monedas;
+    }
+
+    public void setMonedas(int monedas) {
+        this.monedas = monedas;
+    }
+
     public String getCodigoVerificacion() {
         return codigoVerificacion;
     }
@@ -65,7 +110,6 @@ public class ClienteBean {
     public void setCodigoVerificacion(String codigoVerificacion) {
         this.codigoVerificacion = codigoVerificacion;
     }
-
     
     
 }

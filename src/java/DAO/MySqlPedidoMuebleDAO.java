@@ -178,11 +178,14 @@ public class MySqlPedidoMuebleDAO implements IPedidoMuebleDAO{
                 String sql ="select * from master_pedido_muebles";
                 pstm = conn.prepareStatement(sql);
                 rs = pstm.executeQuery();
+                System.out.println("Se envia : " + pstm.toString());
                 PedidoMuebleDTO obj = null;
                 while(rs.next()){
+                    
+                        System.out.println("ID_Cliente: " + rs.getInt("ID_cliente"));
                         obj = new PedidoMuebleDTO();
                         obj.setTipo(rs.getInt("tipo"));
-                        obj.getCliente().setId_cliente(rs.getInt("ID_mueble"));
+                        obj.getCliente().setId_cliente(rs.getInt("ID_cliente"));
                         obj.setTitulo(rs.getString("titulo"));
                         obj.setDescripcion(rs.getString("descripcion"));
                         obj.setImagen1(rs.getString("imagen1"));
@@ -193,6 +196,7 @@ public class MySqlPedidoMuebleDAO implements IPedidoMuebleDAO{
         } catch (Exception e) 
         {
                 e.printStackTrace();
+                System.out.println("Error buscar pedido clientes:" + e);
         } finally
         {
                 try 

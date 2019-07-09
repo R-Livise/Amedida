@@ -10,6 +10,12 @@ package Bean;
  * @author LENOVO
  */
 public class PedidoMuebleDTO {
+
+    public PedidoMuebleDTO() {
+        this.cliente = new ClienteDTO();
+    }
+    
+    
     
     private int id_mueble;
     private int tipo;

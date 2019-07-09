@@ -138,7 +138,7 @@ public class ServletCliente extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         session.invalidate();
-        response.sendRedirect("Catalogo.jsp");
+        response.sendRedirect("index.jsp");
     }
     
     private void Registrar(HttpServletRequest request, HttpServletResponse response)  

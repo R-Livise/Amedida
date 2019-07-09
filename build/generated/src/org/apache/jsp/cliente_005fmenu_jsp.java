@@ -15,7 +15,7 @@ public final class cliente_005fmenu_jsp extends org.apache.jasper.runtime.HttpJs
   static {
     _jspx_dependants = new java.util.ArrayList<String>(2);
     _jspx_dependants.add("/master_head_1.jsp");
-    _jspx_dependants.add("/cliente_inicio_sesion.jsp");
+    _jspx_dependants.add("/cliente_verificacion_sesion.jsp");
   }
 
   private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
@@ -89,14 +89,15 @@ public final class cliente_005fmenu_jsp extends org.apache.jasper.runtime.HttpJs
       out.write("        ");
       out.write("\n");
       out.write("\n");
+      out.write("\n");
       out.write("    \n");
       out.write("        \n");
       out.write("        ");
  
-            if (request.getAttribute("clienteSesion")!=null && request.getAttribute("clienteSesion").equals("cliente")){
+            if (request.getAttribute("clienteSesion")!=null && request.getAttribute("codigoVerificacion").equals("cliente")){
             
                 ClienteDTO cliente = (ClienteDTO) request.getAttribute("clienteSesion");
-                String Codigo = (String)request.getAttribute("clienteSesion");
+                String Codigo = (String)request.getAttribute("codigoVerificacion");
         
       out.write("\n");
       out.write("        ");
@@ -106,10 +107,13 @@ public final class cliente_005fmenu_jsp extends org.apache.jasper.runtime.HttpJs
         if (clienteBean1 == null){
           clienteBean1 = new JavaBean.ClienteBean();
           _jspx_page_context.setAttribute("clienteBean1", clienteBean1, PageContext.SESSION_SCOPE);
-          out.write("\n");
-          out.write("        ");
         }
       }
+      out.write("\n");
+      out.write("        \n");
+      out.write("        ");
+      org.apache.jasper.runtime.JspRuntimeLibrary.handleSetProperty(_jspx_page_context.findAttribute("clienteBean1"), "id_cliente",
+cliente.getId_cliente());
       out.write("\n");
       out.write("        ");
       org.apache.jasper.runtime.JspRuntimeLibrary.handleSetProperty(_jspx_page_context.findAttribute("clienteBean1"), "nombres",
@@ -124,7 +128,7 @@ cliente.getApellidos() );
 cliente.getUsuario() );
       out.write("\n");
       out.write("        ");
-      org.apache.jasper.runtime.JspRuntimeLibrary.handleSetProperty(_jspx_page_context.findAttribute("clienteBean1"), "Codigo",
+      org.apache.jasper.runtime.JspRuntimeLibrary.handleSetProperty(_jspx_page_context.findAttribute("clienteBean1"), "codigoVerificacion",
 Codigo);
       out.write("\n");
       out.write("     \n");
@@ -132,10 +136,10 @@ Codigo);
       out.write(org.apache.jasper.runtime.JspRuntimeLibrary.toString((((JavaBean.ClienteBean)_jspx_page_context.findAttribute("clienteBean1")).getUsuario())));
       out.write(" </h2>\n");
       out.write("        \n");
-      out.write("        \n");
       out.write("        ");
  
-            if(session.getAttribute("usuario") == null){
+            }
+                if(session.getAttribute("clienteBean1") == null){
                 response.sendRedirect("index.jsp");     
             }
 
@@ -154,7 +158,7 @@ Codigo);
       out.write("                            <br>\n");
       out.write("                            <a class=\"effect-1\" href=\"ServletCliente?accion=listar\" >Listar</a>\n");
       out.write("                            <br>\n");
-      out.write("                            <a class=\"effect-1\" href=\"cliente_form_cotizacion\" >Cotizar</a>\n");
+      out.write("                            <a class=\"effect-1\" href=\"cliente_form_cotizacion.jsp\" >Cotizar</a>\n");
       out.write("                            <br>    \n");
       out.write("                            <a class=\"effect-1\" href=\"index.jsp\"  >Salir</a>\n");
       out.write("\n");

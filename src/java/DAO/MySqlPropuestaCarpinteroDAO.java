@@ -32,7 +32,7 @@ public class MySqlPropuestaCarpinteroDAO implements IPropuestaCarpinteroDAO{
             
             String sql = "INSERT INTO propuesta_carpinteros_muebles "
                     + "( ID_muebles , ID_carpintero, precio, mensaje) "
-                    + "VALUES (?,?,?,?,?)";
+                    + "VALUES (?,?,?,?)";
             cn = MysqlDBConexion.getConexion();
             
             pstm=cn.prepareStatement(sql);

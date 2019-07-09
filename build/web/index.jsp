@@ -718,7 +718,7 @@
                      <h2 class="widget-title"><span>ENLACES DE LA PAGINA</span></h2>
                      <ul class="wprt-links clearfix col2">
                         <li><a data-scroll="" href="#home">Inicio</a></li>
-                        <li><a data-scroll="" href="#about">Iniciar CotizaciÃ³n</a></li>
+                        <li><a data-scroll="" href="#about">Iniciar Cotización</a></li>
                         <li><a data-scroll="" href="#services">Propuestas</a></li>
                         <li><a data-scroll="" href="#projects">nuestros proyectos</a></li>
                         <li><a data-scroll="" href="#testimonials">comentarios</a></li>
@@ -791,7 +791,7 @@
         </button>
       </div>
       <div class="modal-body">
-        ...
+        <%@ include file="carpintero_form_session.jsp" %> 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

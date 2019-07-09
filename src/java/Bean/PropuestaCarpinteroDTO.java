@@ -11,6 +11,11 @@ package Bean;
  */
 public class PropuestaCarpinteroDTO {
     
+    public PropuestaCarpinteroDTO(){
+        this.mueble = new PedidoMuebleDTO();
+        this.carpintero = new CarpinteroDTO();
+    }
+    
     private int id_propuesta;
     private PedidoMuebleDTO mueble;
     private CarpinteroDTO carpintero;
