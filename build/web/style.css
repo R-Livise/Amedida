@@ -358,7 +358,7 @@ li.social-links a {
     padding: 13px 0 !important;
 }
 .affix-top {
-    overflow: hidden;
+    overflow: visible;
     visibility: visible;
     opacity: 1;
     top: -100%;
@@ -1978,4 +1978,35 @@ body.app_version .app_iphone_01 img {
 }
 #footer-widgets .widget.widget_socials {
     margin-top: 25px;
+}
+.bg-white{
+    background-color: #fff;
+}
+.p-2{
+    padding: 10px 20px !important;
+}
+.border-table{
+    border: #d58512 solid 2px  !important;
+}
+td.radio-table{
+    border-radius: 10px !important;
+}
+.table{
+    filter: drop-shadow(5px 5px 10px #444);
+}
+.scroll{
+    overflow: scroll !important;
+}
+.button-coti{
+    background: #e8a900;
+    color: #111;
+    font-weight: 900;
+    padding: 0.5em 1.2em;
+    margin: 0.5em 0.8em;
+    border-radius: 50px;
+    text-transform: uppercase;
+    transition: ease all 1s;
+}
+.button-coti:hover{
+    background-color: #000; 
 }

@@ -31,15 +31,53 @@ public class Mensajero {
             p.setProperty("mail.smtp.user", c.getUsuarioCorreo());
             p.setProperty("mail.smtp.auth", "true");
             
-            String mensajeCompleto = "<div style=\"border: 2px outset #E8A209;\n" +
-                                        "  border-radius: 5px;\">\n" +
-                                        "<h1>"+c.getTitulo()+"</h1> \n " +
-                                        "<p>"+c.getMensaje()+"</p></div>";
-            
+            String mensajeHtml = 
+                    "<table style=\"\n" +
+"                    max-width: 66.666667%;\n" +
+"                    font-family: Arial; \n" +
+"                    line-height: 2;\n" +
+"                    color: #212529;\n" +
+"                    text-align: left;\n" +
+"                    border:#000 solid 1px;\n" +
+"                    border-collapse: collapse;\">\n" +
+"                          <thead style=\"\n" +
+"                                 padding: 2em;\n" +
+"                                  background-color: #ffc107 !important;\n" +
+"                                  background-image:linear-gradient(rgba(250,250,250,0.1),rgba(100,100,100,0.2))\">\n" +
+"                              <tr>\n" +
+"                                  <th>\n" +
+"                                <img style=\"float: left !important; margin:0.8em\"src=\"https://cdn.pixabay.com/photo/2014/04/03/11/51/tools-312334_960_720.png\" height=\"30\" width=\"30\">\n" +
+"                                <h2 style=\"margin:0.3em\"> <b>Amedida</b></h2>\n" +
+"                            </th>\n" +
+"                            </tr> \n" +
+"                            </thead>\n" +
+"                            \n" +
+"                            <tbody style=\"padding: 0.75rem 1.25rem;box-sizing: border-box;word-wrap: break-word;\">\n" +
+"                                <tr>\n" +
+"                                    <td>\n" +
+"                                        <h3 style=\"margin:0.5rem ;\" >"+c.getTitulo()+"</h3>\n" +
+"                                <p style=\"margin:0.8em\" >"+c.getMensaje()+"</p>\n" +
+"                                    </td>\n" +
+"                                </tr>\n" +
+"                                <tr>\n" +
+"                                    <td>\n" +
+"                                    <a href=\"#\"  style=\"color: #212529;\n" +
+"                                  background-color: #ffc107;\n" +
+"                                  border-color: #ffc107;display: inline-block;\n" +
+"                                  font-weight: 400;padding: .375rem .75rem;\n" +
+"                                  margin: 0.8em;\n" +
+"                                  \n" +
+"                                  background-image:linear-gradient(rgba(100,100,100,0.2),rgba(100,100,100,0.1));\n" +
+"                                  text-decoration:none; \">Ir a la pagina</a>\n" +
+"                                    </td>\n" +
+"                                </tr>\n" +
+"                            \n" +
+"                      </table>";
+                                      
             
             Session s= Session.getDefaultInstance(p,null);
             MimeBodyPart texto = new MimeBodyPart();
-            texto.setText(mensajeCompleto, "UTF-8", "html");
+            texto.setText(mensajeHtml, "UTF-8", "html");
             BodyPart adjunto = new MimeBodyPart();
             
             System.out.println(c.getRutaArchivo());

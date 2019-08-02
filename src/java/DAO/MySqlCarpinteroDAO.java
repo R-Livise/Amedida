@@ -32,7 +32,7 @@ public class MySqlCarpinteroDAO implements ICarpinteroDAO {
             
             String sql = "INSERT INTO master_carpintero "
                     + "( nombres , apellidos, ncelular, referencias, nnotas, "
-                    + "estrellas, correo, usuario, password, moneditas) "
+                    + "estrellas, correo, usuario, password, monedas) "
                     + "VALUES (?,?,?,?,?,?,?,?,?,?)";
             cn = MysqlDBConexion.getConexion();
             
@@ -157,7 +157,7 @@ public class MySqlCarpinteroDAO implements ICarpinteroDAO {
                 obj.setCorreo(rs.getString("correo"));
                 obj.setUsuario(rs.getString("usuario"));
                 obj.setContrasegna(rs.getString("password"));
-                obj.setId_carpintero(rs.getInt("ID_cliente"));
+                obj.setId_carpintero(rs.getInt("ID_carpintero"));
                 
             }
             

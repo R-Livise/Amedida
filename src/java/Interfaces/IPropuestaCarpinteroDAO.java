@@ -17,6 +17,7 @@ public interface IPropuestaCarpinteroDAO {
         public boolean registrarPropuestaCarpintero(PropuestaCarpinteroDTO obj);
         public boolean actualizarPropuestaCarpintero(PropuestaCarpinteroDTO obj);
         public PropuestaCarpinteroDTO buscarPropuestaCarpintero(int cod);
-        public List<PropuestaCarpinteroDTO> listarPropuestaCarpintero();    
+        public List<PropuestaCarpinteroDTO> listarPropuestaCarpintero(int ID_Cotizacion);    
         public boolean eliminarPropuestaCarpintero(int cod);
+        public void aprobarPropuestaCarpintero(int cod);
 }

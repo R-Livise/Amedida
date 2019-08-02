@@ -126,7 +126,7 @@ public class ServletCliente extends HttpServlet {
             if(cliente != null){
                 request.setAttribute("clienteSesion", cliente);
                 request.setAttribute("codigoVerificacion", "cliente");
-                request.setAttribute("mensaje","Incio correcto");
+                request.setAttribute("mensaje","Inicio correcto");
                 request.getRequestDispatcher("cliente_menu.jsp").forward(request, response);
             }else{    
                 
@@ -157,13 +157,7 @@ public class ServletCliente extends HttpServlet {
         
         boolean resp= daoCliente.registrarCliente(dtoCliente);
         
-        if(resp){
-            request.setAttribute("cliente", dtoCliente);
-            request.getRequestDispatcher("cliente_menu.jsp").forward(request, response);
-        }else{
-            request.setAttribute("mensaje", "No se pudo crear una cuenta");
-            request.getRequestDispatcher("cliente_menu.jsp").forward(request, response);
-        }
+        Login(request, response);
     }
     
     private void Listar(HttpServletRequest request, HttpServletResponse response)

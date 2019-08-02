@@ -160,13 +160,7 @@ public class ServletCarpintero extends HttpServlet {
         
         boolean resp= daoCarpintero.registrarCarpintero(dtoCarpintero);
         
-        if(resp){
-            request.setAttribute("cliente", dtoCarpintero);
-            request.getRequestDispatcher("carpintero_menu.jsp").forward(request, response);
-        }else{
-            request.setAttribute("mensaje", "No se pudo crear una cuenta");
-            request.getRequestDispatcher("carpintero_menu.jsp").forward(request, response);
-        }
+        Login(request, response);
     }
     
     private void Listar(HttpServletRequest request, HttpServletResponse response)

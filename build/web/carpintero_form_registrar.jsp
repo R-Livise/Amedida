@@ -14,7 +14,7 @@
     <body>
         <h2>Registrar carpintero</h2>
                 <form class="col" action="ServletCarpinero">
-                    <span>Nombre :</span>
+                    <span>Nombres :</span>
                     <input type="text" name="nombres">
                     </br>
                     <span>Apellido :</span>

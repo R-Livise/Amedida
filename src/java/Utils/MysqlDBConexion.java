@@ -20,7 +20,8 @@ public class MysqlDBConexion
 	public static Connection getConexion(){
 		Connection con=null;
 		try {
-			con=DriverManager.getConnection("jdbc:mysql://localhost/web_amedida","root","");
+                        
+			con=DriverManager.getConnection("us-cdbr-iron-east-02.cleardb.net","b0e7d1737e712b","49df93e2");
                         System.out.println("Conexxion exitosa");
                 }catch (Exception e) {
 			e.printStackTrace();

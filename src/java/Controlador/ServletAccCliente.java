@@ -9,25 +9,32 @@ import Bean.CarpinteroDTO;
 import Bean.ClienteDTO;
 import Bean.CorreoDTO;
 import Bean.PedidoMuebleDTO;
+import Bean.PropuestaCarpinteroDTO;
 import DAO.DAOFactory;
 import Interfaces.ICarpinteroDAO;
 import Interfaces.IClienteDAO;
 import Interfaces.IPedidoMuebleDAO;
+import Interfaces.IPropuestaCarpinteroDAO;
 import Utils.Mensajero;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author Rafael Livise
  */
 @WebServlet(name = "ServletAccCliente", urlPatterns = {"/ServletAccCliente"})
+@MultipartConfig
 public class ServletAccCliente extends HttpServlet {
 
     /**
@@ -47,14 +54,18 @@ public class ServletAccCliente extends HttpServlet {
             
             String accion = request.getParameter("accion");
             
-            if(accion.equals("cotizar")){
-                this.Cotizar(request, response);
-            }
             if(accion.equals("listarCotizacionPersonal")){
                 this.ListarCotizacionPersonal(request, response);
             }
-            if(accion.equals("mostrarCotizacion")){
-                this.MostrarCotizacion(request, response);
+            if(accion.equals("mostrarPropuestas")){
+                this.MostrarPropuestas(request, response);
+            }
+            if(accion.equals("mostrarPerfilCarpintero")){
+                this.MostrarPerfilCarpintero(request, response);
+            }
+            if(accion.equals("cotizar")){
+                RequestDispatcher view = request.getRequestDispatcher("/cliente_menu.jsp");
+                view.forward(request, response);
             }
         }
     }
@@ -86,6 +97,12 @@ public class ServletAccCliente extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        String accion = request.getParameter("accion");
+            
+            if(accion.equals("cotizar")){
+                this.Cotizar(request, response);
+            }
+            
     }
 
     /**
@@ -112,11 +129,50 @@ public class ServletAccCliente extends HttpServlet {
         
         int cod = Integer.parseInt(request.getParameter("ID_cliente"));
         
-        dtoPedidoMueble.setTipo(Integer.parseInt(request.getParameter("tipo")));
-        dtoPedidoMueble.setTitulo(request.getParameter("titulo"));
-        dtoPedidoMueble.setDescripcion(request.getParameter("descripcion"));
-        dtoPedidoMueble.setImagen1(request.getParameter("imagen1"));
-        dtoPedidoMueble.setImagen2(request.getParameter("imagen2"));
+        try{
+            
+            dtoPedidoMueble.setTipo(Integer.parseInt(request.getParameter("tipo")));
+            dtoPedidoMueble.setTitulo(request.getParameter("titulo"));
+            dtoPedidoMueble.setDescripcion(request.getParameter("descripcion"));    
+            
+            System.out.println("antes imagen 1 a");
+            InputStream inputStream1 = null;
+            Part filePart1 = request.getPart("imagen1");
+            
+            System.out.println("Error imagen 1 :" + filePart1.toString());
+            if (filePart1.getSize() > 0) {
+                    System.out.println(filePart1.getName());
+                    System.out.println(filePart1.getSize());
+                    System.out.println(filePart1.getContentType());
+                    inputStream1 = filePart1.getInputStream();
+                }
+            
+            System.out.println("antes imagen 2 a");
+            
+            InputStream inputStream2 = null;
+            Part filePart2 = request.getPart("imagen2");
+            
+            
+            System.out.println("Error imagen 2 :" + filePart2.toString());
+            if (filePart2.getSize() > 0) {
+                    System.out.println(filePart2.getName());
+                    System.out.println(filePart2.getSize());
+                    System.out.println(filePart2.getContentType());
+                    inputStream2 = filePart2.getInputStream();
+                }
+
+
+            if (inputStream1 != null) {
+                        dtoPedidoMueble.setImagen1(inputStream1);
+            }
+            if (inputStream2 != null) {
+                        dtoPedidoMueble.setImagen2(inputStream2);
+            }
+        
+        }catch(Exception e){
+            System.out.println("Error cotizar: " + e );
+            System.out.println("Error cotizar: " + e.getMessage() );
+        }
         
         dtoCliente = daoCliente.buscarCliente(cod);
         
@@ -130,7 +186,7 @@ public class ServletAccCliente extends HttpServlet {
         
         }else{
             request.setAttribute("men","Error realizar la cotizacion");
-             request.getRequestDispatcher("cliente_menu.jsp").forward(request, response);
+            
         }
     }
     
@@ -164,11 +220,9 @@ public class ServletAccCliente extends HttpServlet {
             }
         
             if(resp2){
-                request.setAttribute("men","Se ha registrado correctamente la cotizacion");
-                request.getRequestDispatcher("cliente_menu.jsp").forward(request, response);
+                
             }else{
                 request.setAttribute("men","Error en enviar el mensaje al los carpintero");
-                request.getRequestDispatcher("cliente_menu.jsp").forward(request, response);
             }
     }    
      
@@ -176,12 +230,59 @@ public class ServletAccCliente extends HttpServlet {
     private void ListarCotizacionPersonal(HttpServletRequest request, HttpServletResponse response) 
         throws ServletException, IOException{
         
+            System.out.println("llega a la funcion");
+            int ID_cliente = Integer.parseInt(request.getParameter("idCliente"));
             
-        
+            DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
+            IPedidoMuebleDAO daoPedidoMueble = factory.getPedidoMueble();
+            
+            List<PedidoMuebleDTO> listaPedidoMueble= daoPedidoMueble.listarPedidoMueble(ID_cliente);
+            System.out.println("llega a listar");
+            request.setAttribute("listaPedidosPersonal",listaPedidoMueble); 
+            request.getRequestDispatcher("cliente_lista_cotizaciones_realizadas.jsp").forward(request, response);
+                
         }    
     
-    private void MostrarCotizacion(HttpServletRequest request, HttpServletResponse response) 
+    private void MostrarPropuestas(HttpServletRequest request, HttpServletResponse response) 
         throws ServletException, IOException{
+        
+            System.out.println("ingresa al servlet Mostrar Propuesta");
+            
+            int ID_pedidoMueble = Integer.parseInt(request.getParameter("idPedidoMueble"));
+            
+            System.out.println("ingresa al servlet Mostrar Propuesta");
+            
+            DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
+            IPedidoMuebleDAO daoPedidoMueble = factory.getPedidoMueble();
+            IPropuestaCarpinteroDAO daoPropuestaCarpintero = factory.getPropuestaCarpintero();
+            
+            PedidoMuebleDTO dtoPedidoMueble = daoPedidoMueble.buscarPedidoMueble(ID_pedidoMueble);
+            
+            List<PropuestaCarpinteroDTO> listaPropuestaCarpintero = daoPropuestaCarpintero.listarPropuestaCarpintero(ID_pedidoMueble);
+            
+            request.setAttribute("pedidoMueble",dtoPedidoMueble); 
+            request.setAttribute("listaPropuestas",listaPropuestaCarpintero); 
+            
+            request.getRequestDispatcher("cliente_lista_propuestas.jsp").forward(request, response);
+            
+        }    
+        
+    private void MostrarPerfilCarpintero(HttpServletRequest request, HttpServletResponse response) 
+        throws ServletException, IOException{
+        
+            int ID_carpintero = Integer.parseInt(request.getParameter("ID_carpintero"));
+            int ID_propuesta = Integer.parseInt(request.getParameter("ID_propuesta"));
+            
+            DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
+            ICarpinteroDAO daoCarpintero = factory.getCarpintero();
+            IPropuestaCarpinteroDAO daoPropuestaCarpintero = factory.getPropuestaCarpintero();
+            
+            CarpinteroDTO dtoCarpintero = daoCarpintero.buscarCarpintero(ID_carpintero);
+            
+            daoPropuestaCarpintero.aprobarPropuestaCarpintero(ID_propuesta);
+            
+            request.setAttribute("carpintero",dtoCarpintero); 
+            request.getRequestDispatcher("cliente_ver_carpintero.jsp").forward(request, response);
         }    
         
         

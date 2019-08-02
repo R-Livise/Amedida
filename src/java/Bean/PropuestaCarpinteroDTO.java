@@ -21,6 +21,7 @@ public class PropuestaCarpinteroDTO {
     private CarpinteroDTO carpintero;
     private Double precio; 
     private String mensaje;
+    private int aprobacion;
 
     public int getId_propuesta() {
         return id_propuesta;
@@ -60,6 +61,14 @@ public class PropuestaCarpinteroDTO {
 
     public void setMensaje(String mensaje) {
         this.mensaje = mensaje;
+    }
+
+    public int getAprobacion() {
+        return aprobacion;
+    }
+
+    public void setAprobacion(int aprobacion) {
+        this.aprobacion = aprobacion;
     }
     
     

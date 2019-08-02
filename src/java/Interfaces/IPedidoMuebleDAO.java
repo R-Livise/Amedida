@@ -7,6 +7,7 @@ package Interfaces;
 
 import Bean.PedidoMuebleDTO;
 import java.util.List;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -18,6 +19,9 @@ public interface IPedidoMuebleDAO {
     public boolean actualizarPedidoMueble(PedidoMuebleDTO obj);
     public PedidoMuebleDTO buscarPedidoMueble(int cod);
     public List<PedidoMuebleDTO> listarPedidoMueble();    
+    public List<PedidoMuebleDTO> listarPedidoMueble(int ID_Cliente);
+    public List<PedidoMuebleDTO> listarPedidoMuebleTipo(int tipo);
+    public byte[] listarImagen(int id, int num);
     public boolean eliminarPedidoMueble(int cod);
     
 }

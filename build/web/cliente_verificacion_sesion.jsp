@@ -21,7 +21,7 @@
         <jsp:setProperty name="clienteBean1" property ="usuario" value="<%=cliente.getUsuario() %>" />
         <jsp:setProperty name="clienteBean1" property ="codigoVerificacion" value="<%=Codigo%>" />
      
-        <h2 class="usuario" >  <jsp:getProperty name="clienteBean1" property ="usuario" /> </h2>
+        
         
         <% 
             }

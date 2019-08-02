@@ -48,6 +48,18 @@ body.building_version .header_style_01 {
 .affix {
     padding: 20px 40px;
 }
+.dropdown-item {
+    display: block;
+    width: 100%;
+    padding: .25rem 1.5rem;
+    clear: both;
+    font-weight: 400;
+    color: black;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+}
 body.building_version .affix {
     background-color: #1f1f1f;
 }

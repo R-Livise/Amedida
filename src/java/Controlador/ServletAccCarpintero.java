@@ -50,8 +50,14 @@ public class ServletAccCarpintero extends HttpServlet {
             if(accion.equals("listarCotizacionesGeneral")){
                 this.ListarCotizacionesGeneral(request, response);
             }
+            if(accion.equals("listarCotizacionesTipo")){
+                this.ListarCotizacionesTipo(request, response);
+            }
             if(accion.equals("proponer")){
                 this.Proponer(request, response);
+            }
+            if(accion.equals("mostrarCotizacionEspecifico")){
+                this.MostrarCotizacionEspecifico(request, response);
             }
         }
     }
@@ -102,7 +108,17 @@ public class ServletAccCarpintero extends HttpServlet {
         IPedidoMuebleDAO daoPedidoMueble = factory.getPedidoMueble();
         
         List<PedidoMuebleDTO> listaPedidos = daoPedidoMueble.listarPedidoMueble();
-        System.out.println("la lista muestra" + listaPedidos.toString());
+            request.setAttribute("cotizaciones", listaPedidos);
+            request.getRequestDispatcher("carpintero_lista_cotizaciones_general.jsp").forward(request, response);
+    }
+    private void ListarCotizacionesTipo(HttpServletRequest request, HttpServletResponse response)  
+        throws ServletException, IOException{
+        
+        int tipo = Integer.parseInt(request.getParameter("tipo"));
+        DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
+        IPedidoMuebleDAO daoPedidoMueble = factory.getPedidoMueble();
+        
+        List<PedidoMuebleDTO> listaPedidos = daoPedidoMueble.listarPedidoMuebleTipo(tipo);
             request.setAttribute("cotizaciones", listaPedidos);
             request.getRequestDispatcher("carpintero_lista_cotizaciones_general.jsp").forward(request, response);
     }
@@ -115,7 +131,7 @@ public class ServletAccCarpintero extends HttpServlet {
         
         PropuestaCarpinteroDTO dtoPropuestaCarpintero = new PropuestaCarpinteroDTO();
         
-        dtoPropuestaCarpintero.getMueble().setId_muebles(Integer.parseInt(request.getParameter("ID_pedido")));
+        dtoPropuestaCarpintero.getMueble().setId_mueble(Integer.parseInt(request.getParameter("ID_pedido")));
         dtoPropuestaCarpintero.getCarpintero().setId_carpintero(Integer.parseInt(request.getParameter("ID_carpintero")));
         dtoPropuestaCarpintero.setMensaje(request.getParameter("mensaje"));
         dtoPropuestaCarpintero.setPrecio(Double.parseDouble(request.getParameter("precio")));
@@ -166,6 +182,24 @@ public class ServletAccCarpintero extends HttpServlet {
                 request.setAttribute("mensaje","Error en enviar el mensaje al los carpintero");
                 request.getRequestDispatcher("carpintero_menu.jsp").forward(request, response);
             }
+        
+        
+    }
+    
+    
+    private void MostrarCotizacionEspecifico(HttpServletRequest request, HttpServletResponse response) 
+        throws ServletException, IOException{
+        
+        
+        DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
+        IPedidoMuebleDAO daoPedidoMueble = factory.getPedidoMueble();
+        
+        int id_mueble = Integer.parseInt(request.getParameter("ID"));
+        
+        PedidoMuebleDTO Pedido = daoPedidoMueble.buscarPedidoMueble(id_mueble);
+        
+            request.setAttribute("cotizacion", Pedido);
+            request.getRequestDispatcher("carpintero_form_propuesta.jsp").forward(request, response);
         
         
     }
