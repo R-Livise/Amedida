@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    
+    <servlet>
+        <servlet-name>ServletAccCliente</servlet-name>
+	<servlet-class>com.amedida.Controlador.ServletAccCliente</servlet-class>
+    </servlet>
+    <servlet-mapping>
+	    <servlet-name>ServletAccCliente</servlet-name>
+	    <url-pattern>/ServletAccCliente</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>ServletCliente</servlet-name>
+	<servlet-class>com.amedida.Controlador.ServletCliente</servlet-class>
+    </servlet>
+    <servlet-mapping>
+	    <servlet-name>ServletCliente</servlet-name>
+	    <url-pattern>/ServletCliente</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>ServletCarpintero</servlet-name>
+	<servlet-class>com.amedida.Controlador.ServletCarpintero</servlet-class>
+    </servlet>
+    <servlet-mapping>
+	    <servlet-name>ServletCarpintero</servlet-name>
+	    <url-pattern>/ServletCarpintero</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ServletAccCarpintero</servlet-name>
+	<servlet-class>com.amedida.Controlador.ServletAccCarpintero</servlet-class>
+    </servlet>
+    <servlet-mapping>
+	    <servlet-name>ServletAccCarpintero</servlet-name>
+	    <url-pattern>/ServletAccCarpintero</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>ServletImagen</servlet-name>
+	<servlet-class>com.amedida.Controlador.ServletImagen</servlet-class>
+    </servlet>
+    <servlet-mapping>
+	    <servlet-name>ServletImagen</servlet-name>
+	    <url-pattern>/ServletImagen</url-pattern>
+    </servlet-mapping>
+    
+    <session-config>
+            <session-timeout>500</session-timeout>
+        </session-config>
+</web-app>
