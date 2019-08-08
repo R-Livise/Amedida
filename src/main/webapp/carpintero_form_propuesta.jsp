@@ -123,7 +123,7 @@
                                 <button type="submit" class="btn btn-warning">Enviar Propuesta</button>
                                 <input type="hidden" name="ID_pedido" value="<%=pedido.getId_mueble()%>">
                                 <input type="hidden" name="ID_cliente" value="<%=pedido.getCliente().getId_cliente()%>">
-                                <input type="hidden" name="ID_carpintero" value="<jsp:getProperty name="carpinteroBean1" property ="id_cliente" />">
+                                <input type="hidden" name="ID_carpintero" value="<jsp:getProperty name="carpinteroBean1" property ="id_carpintero" />">
                             </form>           
                 
                         </div>

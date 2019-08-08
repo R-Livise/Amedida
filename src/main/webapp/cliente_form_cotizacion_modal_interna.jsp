@@ -4,6 +4,8 @@
     Author     : Rafael Livise
 --%>
 
+
+                <div class="modal-body">   
                     <div class="form-group">
                         <label for="titulo">Titulo</label>
                         <input type="text" name="titulo" class="form-control" id="titulo" aria-describedby="Escriba el titulo de su cotizacion" placeholder="Escriba los Nombres">
@@ -16,13 +18,17 @@
                     </div>
                     <div class="form-group">
                         <label for="imagen1">Imagen 1</label>
-                        <input type="file" name="imagen1" class="form-control" id="imagen1" >
+                        <input type="file" name="imagen1" class="" id="imagen1" >
                     </div> 
                     <div class="form-group">
                         <label for="imagen2">Imagen 2</label>
-                        <input type="file" name="imagen2" class="form-control" id="imagen2" >
+                        <input type="file" name="imagen2" class="" id="imagen2" >
                         
                     </div>
                     <input type="hidden" name="ID_cliente" value="<jsp:getProperty name="clienteBean1" property ="id_cliente" />">
                     <input type="hidden" name="accion" value="cotizar">
+                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-warning">Enviar</button>
+                </div>

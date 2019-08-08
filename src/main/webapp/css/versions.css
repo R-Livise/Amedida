@@ -47,8 +47,7 @@ body.building_version .grd1 {
     background: -moz-linear-gradient(left, #ffc000 0%, #fdde00 100%);
     background: -webkit-linear-gradient(left, #ffc000 0%, #fdde00 100%);
     background: linear-gradient(to right, #ffc000 0%, #fdde00 100%);
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#ffc000', endColorstr='#fdde00', GradientType=1);
-}
+    }
 
 body.building_version .dev-list .widget h3,
 body.building_version .icon_wrap,
@@ -72,8 +71,7 @@ body.building_version .grd1:focus {
     background: -moz-linear-gradient(left, #fdde00 0%, #ffc000 100%);
     background: -webkit-linear-gradient(left, #fdde00 0%, #ffc000 100%);
     background: linear-gradient(to right, #fdde00 0%, #ffc000 100%);
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#fdde00', endColorstr='#ffc000', GradientType=1);
-}
+    }
 
 body.building_version .navbar-nav span {
     color: #e8a900 !important;

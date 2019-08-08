@@ -4,7 +4,7 @@
     Author     : Rafael Livise
 --%>
 
-        <h2>Inicar Seccion Cliente</h2>
+        <h2>Inicar Session Cliente -Prueba</h2>
                 <form class="col" action="ServletCliente">
                     <span>Usuario :</span>
                     <input type="text" name="usuario">

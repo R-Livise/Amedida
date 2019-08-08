@@ -12,7 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>cliente_menu</title>
         <%@ include file="master_head_1.jsp" %> 
-        <%@ include file="cliente_verificacion_sesion.jsp" %> 
+        <%@ include file="cliente_verificacion_sesion.jsp" %>
     </head>
     <body class="building_version" data-spy="scroll" data-target=".header">
         <%@ include file="cliente_nav_principal.jsp" %> 

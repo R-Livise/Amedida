@@ -20,9 +20,8 @@ public class MysqlDBConexion
 	public static Connection getConexion(){
 		Connection con=null;
 		try {
-                        
-			//con=DriverManager.getConnection("us-cdbr-iron-east-02.cleardb.net","b0e7d1737e712b","49df93e2");
-			con=DriverManager.getConnection("jdbc:mysql://us-cdbr-iron-east-02.cleardb.net:3306/heroku_616f188f3d99a76","b0e7d1737e712b","49df93e2");
+                        //con=DriverManager.getConnection("us-cdbr-iron-east-02.cleardb.net","b0e7d1737e712b","49df93e2");
+			con=DriverManager.getConnection("jdbc:mysql://us-cdbr-iron-east-02.cleardb.net/heroku_9b7961b886e5004","b536e4aa36bd2a","b3a9325d");
                         System.out.println("Conexxion exitosa");
                 }catch (Exception e) {
 			e.printStackTrace();

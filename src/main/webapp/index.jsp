@@ -1,5 +1,7 @@
+<%@page import="com.amedida.JavaBean.CarpinteroBean"%>
+<%@page import="com.amedida.JavaBean.ClienteBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="Bean.ClienteDTO"%>
+<%@page import="com.amedida.Bean.ClienteDTO"%>
 
 
 <!DOCTYPE html>
@@ -36,6 +38,8 @@
         <img class="preloader" src="images/loaders/loader-building2.gif" alt="">
     </div>
     <!-- end loader -->
+   
+    
     <!-- END LOADER -->
     <header class="header header_style_01">
         <nav class="megamenu navbar navbar-default" data-spy="affix">
@@ -48,9 +52,55 @@
                                 </div>
                             </div>
                             <div class="top-area-block top-area-socials socials-colored-hover">
-                                <div class="socials inline-inside"> 
-                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalIniciarSession" title="iniciar sección"><i class="fa fa-user" aria-hidden="true"></i></button>
-                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalRegistrarse" title="registrase"><i class="fa fa-user-plus" aria-hidden="true"></i></button>
+                                <div class="socials inline-inside">
+                        <%
+                                        
+                            if ((ClienteBean)session.getAttribute("clienteBean1") != null) {
+                                
+
+                        %>
+                            <jsp:useBean id="clienteBean1" class="com.amedida.JavaBean.ClienteBean" scope="session"></jsp:useBean>
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li><div class="dropdown">
+                                                <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Bienvenido <jsp:getProperty name="clienteBean1" property ="usuario" />
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item" href="index.jsp">Inicio</a>
+                                                    <a class="dropdown-item" href="ServletAccCliente?accion=listarCotizacionPersonal&idCliente=<jsp:getProperty name="clienteBean1" property="id_cliente"/>">Mis cotizaciones</a>
+                                                    <a class="dropdown-item" href="ServletCarpintero?accion=logout">salir</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>                        
+                        <%
+                            }else if ((CarpinteroBean)session.getAttribute("carpinteroBean1") != null) {
+
+
+                        %>
+                            <jsp:useBean id="carpinteroBean1" class="com.amedida.JavaBean.CarpinteroBean" scope="session"></jsp:useBean>
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li><div class="dropdown">
+                                                <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Bienvenido <jsp:getProperty name="carpinteroBean1" property ="usuario" />
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item" href="index.jsp">Inicio</a>
+                                                    <a class="dropdown-item" href="ServletAccCarpintero?accion=listarCotizacionesGeneral">Lista Cotizaciones</a>
+                                                    <a class="dropdown-item" href="ServletCarpintero?accion=logout">salir</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                        <%                    
+                            }
+                            else{
+                        %>
+                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalIniciarSession" title="iniciar sección"> <i class="fa fa-user fa-pull-left fa-1x5" aria-hidden="true"></i>Iniciar Sessión</button>
+                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalRegistrarse" title="registrase"><i class="fa fa-user-plus fa-pull-left fa-1x5" aria-hidden="true"></i>Registrarse</button>
+                        <%                    
+                            }
+                        %>            
                                     <a class="socials-item" href="#" target="_blank" title="facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
                                     <a class="socials-item" href="#" target="_blank" title="linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i></a> 
                                     <a class="socials-item" href="#" target="_blank" title="twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a> 
@@ -89,7 +139,7 @@
 
 
                         %>
-                         <li><a data-scroll href="cliente_menu.jsp">MENU</a></li>
+                         <li><a data-scroll href="carpintero_menu.jsp">MENU</a></li>
 
                         <%                    }
                         %>
@@ -879,7 +929,7 @@
                     </div>
                     <div class="form-group">
                         <label for="contraseña">Contraseña</label>
-                        <input type="text" name="password" class="form-control" id="contraseña" placeholder="Escriba la Contraseña">
+                        <input type="password" name="password" class="form-control" id="contraseña" placeholder="Escriba la Contraseña">
                     </div>
                     <input type="hidden" name="accion" value="login">
                     
@@ -903,11 +953,10 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h3 class="modal-title" id="exampleModalLabel">
+                <h3 class="modal-title col-10" style="width: 80%" id="exampleModalLabel">
                     <p id="titlecliente" style="display: none;">Registrase - Cliente</p>
                     <p id="titlecarpintero">Registrase - Carpintero</p>
                 </h3>
-                
             </div>
             <form id="formregistro" class="col" action="ServletCarpintero">
                 <div class="modal-body">
@@ -991,37 +1040,7 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="modalIniciarSession" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Pagina de inciar seccion</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form class="col" action="ServletCliente">
-                    <div class="form-group">
-                        <label for="usuario">Usuario</label>
-                        <input type="text" name="usuario" class="form-control" id="usuario" aria-describedby="emailHelp" placeholder="Escriba el Usuario">
 
-                    </div>
-                    <div class="form-group">
-                        <label for="contraseña">Contraseña</label>
-                        <input type="text" name="password" class="form-control" id="contraseña" placeholder="Escriba la Contraseña">
-                    </div>
-                    <button type="submit" class="btn btn-warning">Enviar</button>
-                </form>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-warning">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
 <!--fin modelboostrap--> 
 
 <%@include file="cliente_forrm_cotizacion_modal.jsp" %>

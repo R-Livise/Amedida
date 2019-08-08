@@ -16,7 +16,8 @@
         <%@ include file="master_head_1.jsp" %> 
     </head>
     <body class="building_version" data-spy="scroll" data-target=".header">
-
+        
+        <%@ include file="carpintero_verificacion_sesion.jsp" %> 
         <%@ include file="carpintero_nav_principal.jsp" %> 
         
         
