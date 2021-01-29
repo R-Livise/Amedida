@@ -17,7 +17,7 @@ public class Conexion {
     public Connection conectar(){
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            conectar = DriverManager.getConnection("jdbc:mysql://localhost:3306/web_amedida","root","");
+            conectar = DriverManager.getConnection("jdbc:mysql://localhost:8080/web_amedida","root","");
              System.out.println("Conexxion exitosa");
         }catch (ClassNotFoundException | SQLException e){
             System.out.println("Error al conectar: "+e.getMessage());

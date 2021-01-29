@@ -126,7 +126,7 @@ public class ServletCliente extends HttpServlet {
             if(cliente != null){
                 request.setAttribute("clienteSesion", cliente);
                 request.setAttribute("codigoVerificacion", "cliente");
-                request.setAttribute("mensaje","Incio correcto");
+                request.setAttribute("mensaje","Inicio correcto");
                 request.getRequestDispatcher("cliente_menu.jsp").forward(request, response);
             }else{    
                 

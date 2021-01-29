@@ -358,7 +358,7 @@ li.social-links a {
     padding: 13px 0 !important;
 }
 .affix-top {
-    overflow: hidden;
+    overflow: visible;
     visibility: visible;
     opacity: 1;
     top: -100%;

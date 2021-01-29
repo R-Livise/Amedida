@@ -18,6 +18,7 @@ public interface IPedidoMuebleDAO {
     public boolean actualizarPedidoMueble(PedidoMuebleDTO obj);
     public PedidoMuebleDTO buscarPedidoMueble(int cod);
     public List<PedidoMuebleDTO> listarPedidoMueble();    
+    public List<PedidoMuebleDTO> listarPedidoMueble(int ID_Cliente);    
     public boolean eliminarPedidoMueble(int cod);
     
 }

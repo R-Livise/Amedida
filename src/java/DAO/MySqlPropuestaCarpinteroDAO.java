@@ -155,7 +155,7 @@ public class MySqlPropuestaCarpinteroDAO implements IPropuestaCarpinteroDAO{
     }
 
     @Override
-    public List<PropuestaCarpinteroDTO> listarPropuestaCarpintero() {
+    public List<PropuestaCarpinteroDTO> listarPropuestaCarpintero(int ID_Cotizacion) {
         
         List<PropuestaCarpinteroDTO> data = new ArrayList<PropuestaCarpinteroDTO>();
 
@@ -164,8 +164,11 @@ public class MySqlPropuestaCarpinteroDAO implements IPropuestaCarpinteroDAO{
         ResultSet rs = null;
         try {
                 conn = MysqlDBConexion.getConexion();
-                String sql ="select * from propuesta_carpinteros_muebles";
+                String sql ="SELECT * from propuesta_carpinteros_muebles WHERE ID_muebles = ?";
+                
                 pstm = conn.prepareStatement(sql);
+                pstm.setInt(1, ID_Cotizacion);
+                
                 rs = pstm.executeQuery();
                 PropuestaCarpinteroDTO obj = null;
                 while(rs.next()){
@@ -174,8 +177,10 @@ public class MySqlPropuestaCarpinteroDAO implements IPropuestaCarpinteroDAO{
                         obj.getCarpintero().setId_carpintero(rs.getInt("ID_carpintero"));
                         obj.setPrecio(rs.getDouble("precio"));
                         obj.setMensaje(rs.getString("mensaje"));  
-                        data.add(obj);
+                        data.add(obj);  
                 }
+                
+                System.out.println(pstm.toString());
         } catch (Exception e) 
         {
                 e.printStackTrace();

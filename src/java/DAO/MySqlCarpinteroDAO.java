@@ -32,7 +32,7 @@ public class MySqlCarpinteroDAO implements ICarpinteroDAO {
             
             String sql = "INSERT INTO master_carpintero "
                     + "( nombres , apellidos, ncelular, referencias, nnotas, "
-                    + "estrellas, correo, usuario, password, moneditas) "
+                    + "estrellas, correo, usuario, password, monedas) "
                     + "VALUES (?,?,?,?,?,?,?,?,?,?)";
             cn = MysqlDBConexion.getConexion();
             

@@ -4,20 +4,12 @@
     Author     : Rafael Livise
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
         <h2>Inicar Seccion Cliente</h2>
                 <form class="col" action="ServletCliente">
                     <span>Usuario :</span>
                     <input type="text" name="usuario">
                     </br>
-                    <span>ContraseÃ±a</span>
+                    <span>Contraseña</span>
                     <input type="text" name="password">
                     </br>
                     
@@ -26,5 +18,4 @@
                 
                     <input type="submit" value="enviar">
                 </form>
-    </body>
-</html>
+    

@@ -4,7 +4,7 @@
     Author     : Rafael Livise
 --%>
 
-        <h2>Inicar Seccion Cliente</h2>
+        <h2>Inicar Seccion Carpintero</h2>
                 <form class="col" action="ServletCarpintero">
                     <span>Usuario :</span>
                     <input type="text" name="usuario">

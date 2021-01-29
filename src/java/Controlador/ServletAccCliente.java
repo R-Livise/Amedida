@@ -9,10 +9,12 @@ import Bean.CarpinteroDTO;
 import Bean.ClienteDTO;
 import Bean.CorreoDTO;
 import Bean.PedidoMuebleDTO;
+import Bean.PropuestaCarpinteroDTO;
 import DAO.DAOFactory;
 import Interfaces.ICarpinteroDAO;
 import Interfaces.IClienteDAO;
 import Interfaces.IPedidoMuebleDAO;
+import Interfaces.IPropuestaCarpinteroDAO;
 import Utils.Mensajero;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -53,8 +55,8 @@ public class ServletAccCliente extends HttpServlet {
             if(accion.equals("listarCotizacionPersonal")){
                 this.ListarCotizacionPersonal(request, response);
             }
-            if(accion.equals("mostrarCotizacion")){
-                this.MostrarCotizacion(request, response);
+            if(accion.equals("mostrarPropuestas")){
+                this.MostrarPropuestas(request, response);
             }
         }
     }
@@ -176,12 +178,41 @@ public class ServletAccCliente extends HttpServlet {
     private void ListarCotizacionPersonal(HttpServletRequest request, HttpServletResponse response) 
         throws ServletException, IOException{
         
+            System.out.println("llega a la funcion");
+            int ID_cliente = Integer.parseInt(request.getParameter("idCliente"));
             
-        
+            DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
+            IPedidoMuebleDAO daoPedidoMueble = factory.getPedidoMueble();
+            
+            List<PedidoMuebleDTO> listaPedidoMueble= daoPedidoMueble.listarPedidoMueble(ID_cliente);
+            System.out.println("llega a listar");
+            request.setAttribute("listaPedidosPersonal",listaPedidoMueble); 
+            request.getRequestDispatcher("cliente_lista_cotizaciones_realizadas.jsp").forward(request, response);
+                
         }    
     
-    private void MostrarCotizacion(HttpServletRequest request, HttpServletResponse response) 
+    private void MostrarPropuestas(HttpServletRequest request, HttpServletResponse response) 
         throws ServletException, IOException{
+        
+            System.out.println("ingresa al servlet Mostrar Propuesta");
+            
+            int ID_pedidoMueble = Integer.parseInt(request.getParameter("idPedidoMueble"));
+            
+            System.out.println("ingresa al servlet Mostrar Propuesta");
+            
+            DAOFactory factory = DAOFactory.getDAOFactory(DAOFactory.MYSQL);
+            IPedidoMuebleDAO daoPedidoMueble = factory.getPedidoMueble();
+            IPropuestaCarpinteroDAO daoPropuestaCarpintero = factory.getPropuestaCarpintero();
+            
+            PedidoMuebleDTO dtoPedidoMueble = daoPedidoMueble.buscarPedidoMueble(ID_pedidoMueble);
+            
+            List<PropuestaCarpinteroDTO> listaPropuestaCarpintero = daoPropuestaCarpintero.listarPropuestaCarpintero(ID_pedidoMueble);
+            
+            request.setAttribute("pedidoMueble",dtoPedidoMueble); 
+            request.setAttribute("listaPropuestas",listaPropuestaCarpintero); 
+            
+            request.getRequestDispatcher("cliente_lista_propuestas.jsp").forward(request, response);
+            
         }    
         
         

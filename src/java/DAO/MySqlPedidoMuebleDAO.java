@@ -34,7 +34,7 @@ public class MySqlPedidoMuebleDAO implements IPedidoMuebleDAO{
             
             
             String sql = "INSERT INTO master_pedido_muebles "
-                    + "( tipo, ID_cliente, titulo, descripcion, image1, imagen2) "
+                    + "( tipo, ID_cliente, titulo, descripcion, imagen1, imagen2) "
                     + "VALUES (?,?,?,?,?,?)";
             cn = MysqlDBConexion.getConexion();
             
@@ -82,7 +82,7 @@ public class MySqlPedidoMuebleDAO implements IPedidoMuebleDAO{
             
             String sql = "UPDATE master_pedido_muebles SET "
                     + "tipo = ? , ID_cliente = ? , titulo = ? ,"
-                    + "descripcion = ? , image1 = ?, , image2 = ? WHERE ID_mueble= ?";
+                    + "descripcion = ? , imagen1 = ?, , imagen2 = ? WHERE ID_mueble= ?";
             cn = MysqlDBConexion.getConexion();
             
             pstm=cn.prepareStatement(sql);
@@ -127,7 +127,7 @@ public class MySqlPedidoMuebleDAO implements IPedidoMuebleDAO{
         
         try{
             
-            String sql = "SELECT * FROM master_pedido_muebles WHERE ID_muebles = ?";
+            String sql = "SELECT * FROM master_pedido_muebles WHERE ID_mueble = ?";
             cn = MysqlDBConexion.getConexion();
             
             pstm=cn.prepareStatement(sql);
@@ -147,7 +147,7 @@ public class MySqlPedidoMuebleDAO implements IPedidoMuebleDAO{
                 obj.setId_muebles(rs.getInt("ID_mueble"));
                 
             }
-            
+            System.out.println(obj.getTitulo());
         }catch(Exception e){
             e.printStackTrace();
             System.out.println("Error buscar pedido clientes:" + e);
@@ -197,6 +197,54 @@ public class MySqlPedidoMuebleDAO implements IPedidoMuebleDAO{
         {
                 e.printStackTrace();
                 System.out.println("Error buscar pedido clientes:" + e);
+        } finally
+        {
+                try 
+                {   
+                        if(rs!= null) rs.close();
+                        if(pstm!= null) pstm.close();
+                        if(conn!= null) conn.close();
+                } catch (Exception e2) 
+                {
+                }
+        }
+
+        return data;
+    }
+    @Override
+    public List<PedidoMuebleDTO> listarPedidoMueble(int ID_cliente) {
+        List<PedidoMuebleDTO> data = new ArrayList<PedidoMuebleDTO>();
+
+        Connection conn= null;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+        try {
+                conn = MysqlDBConexion.getConexion();
+                String sql ="select * from master_pedido_muebles WHERE ID_cliente = ?";
+                
+                pstm = conn.prepareStatement(sql);
+                pstm.setInt(1, ID_cliente);
+                
+                rs = pstm.executeQuery();
+                System.out.println("Se envia : " + pstm.toString());
+                PedidoMuebleDTO obj = null;
+                while(rs.next()){
+                    
+                        System.out.println("ID_Cliente: " + rs.getInt("ID_cliente"));
+                        obj = new PedidoMuebleDTO();
+                        obj.setTipo(rs.getInt("tipo"));
+                        obj.getCliente().setId_cliente(rs.getInt("ID_cliente"));
+                        obj.setTitulo(rs.getString("titulo"));
+                        obj.setDescripcion(rs.getString("descripcion"));
+                        obj.setImagen1(rs.getString("imagen1"));
+                        obj.setImagen2(rs.getString("imagen2"));
+                        obj.setId_muebles(rs.getInt("ID_mueble"));
+                        data.add(obj);
+                }
+        } catch (Exception e) 
+        {
+                e.printStackTrace();
+                System.out.println("Error buscar las cotizaiones realizadas:" + e);
         } finally
         {
                 try 
